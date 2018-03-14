@@ -30,8 +30,8 @@ function Box(props){
     );
 }
 
-function Skills(monster){
-    monster = monster.monster;
+function Skills(props){
+    var monster = props.monster;
     var skills = [];
 
     if(monster.acrobatics) skills.push(<span>acrobatics {sign(monster.acrobatics)}</span>);
@@ -63,16 +63,16 @@ function Skills(monster){
     return <div>&nbsp;</div>;
 }
 
-function AbilitySaves(monster){
-    monster = monster.monster;
+function AbilitySaves(props){
+    var monster = props.monster;
     var saves = [];
 
-    if(monster.strength_save) saves.push(<span>Strength {sign(monster.strength_save)}</span>);
-    if(monster.dexterity_save) saves.push(<span>Dexterity {sign(monster.dexterity_save)}</span>);
-    if(monster.constitution_save) saves.push(<span>Constitution {sign(monster.constitution_save)}</span>);
-    if(monster.intelligence_save) saves.push(<span>Intelligence {sign(monster.intelligence_save)}</span>);
-    if(monster.wisdom_save) saves.push(<span>Wisdom {sign(monster.wisdom_save)}</span>);
-    if(monster.charisma_save) saves.push(<span>Charisma {sign(monster.charisma_save)}</span>);
+    if(monster.strength_save) saves.push(<span key="str">Strength {sign(monster.strength_save)}</span>);
+    if(monster.dexterity_save) saves.push(<span key="dex">Dexterity {sign(monster.dexterity_save)}</span>);
+    if(monster.constitution_save) saves.push(<span key="con">Constitution {sign(monster.constitution_save)}</span>);
+    if(monster.intelligence_save) saves.push(<span key="int">Intelligence {sign(monster.intelligence_save)}</span>);
+    if(monster.wisdom_save) saves.push(<span key="wis">Wisdom {sign(monster.wisdom_save)}</span>);
+    if(monster.charisma_save) saves.push(<span key="cha">Charisma {sign(monster.charisma_save)}</span>);
 
     if(saves.length>0){
         return (
@@ -82,7 +82,109 @@ function AbilitySaves(monster){
             </div>
         );
     }
+}
 
+function PrintMonster(props){
+    var m = props.monster;
+
+    return (
+        <div key={m.index} style={{padding:"5px"}}>
+            <div style={{borderBottom: "5px double black"}}>
+                <img/>&nbsp;
+            </div>
+            <div>
+                <Box title="Name">
+                    {m.name}
+                </Box>
+            </div>
+            <div style={{display:"table-row"}}>
+                <Box title="Size">
+                    {m.size}
+                </Box>
+                <Box title="Type">
+                    {m.type}
+                </Box>
+                <Box title="Alignment">
+                    {m.alignment}
+                </Box>
+            </div>
+            <div>
+                <Box title="AC">
+                    {m.armor_class}
+                </Box>
+                <Box title="HP">
+                    {m.hit_points} ({m.hit_dice})
+                </Box>
+            </div>
+            <div>
+                <Box title="Speed">
+                    {m.speed}
+                </Box>
+            </div>
+            <div>
+                <Statistic name="STR" value={m.strength}/>
+                <Statistic name="DEX" value={m.dexterity}/>
+                <Statistic name="CON" value={m.constitution}/>
+                <Statistic name="INT" value={m.intelligence}/>
+                <Statistic name="WIS" value={m.wisdom}/>
+                <Statistic name="CHA" value={m.charisma}/>
+            </div>
+            <div>
+                <Box title="Senses">
+                    {m.senses}
+                </Box>
+            </div>
+            <div>
+                <div>
+                    <Box title="Passive Perception">
+                        {10 + (m.perception? m.perception:Math.floor((m.wisdom - 10) / 2))}
+                    </Box>
+                    <Box title="Challenge">
+                        {(m.challenge_rating == 0 || m.challenge_rating >= 1)? m.challenge_rating : "1/" + (1/m.challenge_rating)}
+                    </Box>
+                    <Box title="XP">
+                        {m.challenge_rating * 200}
+                    </Box>
+                </div>
+            </div>
+            <div>
+                <Box title="Languages">
+                    {m.languages}
+                </Box>
+            </div>
+            <div>
+                <Box title="Traits">
+                    <Skills monster={m}/>
+                    {m.damage_vulnerabilities && <div><b>Damage Vulnerabilities</b>{m.damage_vulnerabilities}</div>}
+                    {m.damage_resistances && <div><b>Damage Resistances</b>{m.damage_resistances}</div>}
+                    {m.damage_immunities && <div><b>Damage Immunities</b>{m.damage_immunities}</div>}
+                    {m.condition_immunities && <div><b>Condition Immunities</b>{m.condition_immunities}</div>}
+                    <AbilitySaves monster={m}/>
+                    {m.special_abilities.map((s)=>{
+                        return (
+                            <div>
+                                <b>{s.name}</b> {s.desc}
+                            </div>
+                        );
+                    })}
+                    {m.actions.map((a)=>{
+                        return (
+                            <div>
+                                <b>{a.name}</b> {a.desc}
+                            </div>
+                        );
+                    })}
+                    {m.legendary_actions.map((a)=>{
+                        return (
+                            <div>
+                                <b>{a.name}</b> {a.desc}
+                            </div>
+                        );
+                    })}
+                </Box>
+            </div>
+        </div>
+    );
 }
 
 class App extends React.Component {
@@ -121,80 +223,7 @@ class App extends React.Component {
                 </div>
                 <div className="row">
                     {this.state.selected.map((m)=>
-                        <div key={m.index} style={{padding:"5px"}}>
-                            <div style={{borderBottom: "5px double black"}}>
-                                <img/>&nbsp;
-                            </div>
-                            <div>
-                                <Box title="Name">
-                                    {m.name}
-                                </Box>
-                            </div>
-                            <div style={{display:"table-row"}}>
-                                <Box title="Size">
-                                    {m.size}
-                                </Box>
-                                <Box title="Type">
-                                    {m.type}
-                                </Box>
-                                <Box title="Alignment">
-                                    {m.alignment}
-                                </Box>
-                            </div>
-                            <div>
-                                <Box title="AC">
-                                    {m.armor_class}
-                                </Box>
-                                <Box title="HP">
-                                    {m.hit_points} ({m.hit_dice})
-                                </Box>
-                            </div>
-                            <div>
-                                <Box title="Speed">
-                                    {m.speed}
-                                </Box>
-                            </div>
-                            <div>
-                                <Statistic name="STR" value={m.strength}/>
-                                <Statistic name="DEX" value={m.dexterity}/>
-                                <Statistic name="CON" value={m.constitution}/>
-                                <Statistic name="INT" value={m.intelligence}/>
-                                <Statistic name="WIS" value={m.wisdom}/>
-                                <Statistic name="CHA" value={m.charisma}/>
-                            </div>
-                            <div>
-                                <Box title="Senses">
-                                    {m.senses}
-                                </Box>
-                            </div>
-                            <div>
-                                <div>
-                                    <Box title="Passive Perception">
-                                        {10 + (m.perception? m.perception:Math.floor((m.wisdom - 10) / 2))}
-                                    </Box>
-                                    <Box title="Challenge">
-                                        {(m.challenge_rating == 0 || m.challenge_rating >= 1)? m.challenge_rating : "1/" + (1/m.challenge_rating)}
-                                    </Box>
-                                    <Box title="XP">
-                                        {m.challenge_rating * 200}
-                                    </Box>
-                                </div>
-                            </div>
-                            <div>
-                                <Box title="Languages">
-                                    {m.languages}
-                                </Box>
-                            </div>
-                            <div>
-                                <Box title="Traits">
-                                    <Skills monster={m}/>
-                                    {m.damage_vulnerabilities && <div><b>Damage Vulnerabilities</b>{m.damage_vulnerabilities}</div>}
-                                    {m.damage_resistances && <div><b>Damage Resistances</b>{m.damage_resistances}</div>}
-                                    {m.damage_immunities && <div><b>Damage Immunities</b>{m.damage_immunities}</div>}
-                                    <AbilitySaves monster={m}/>
-                                </Box>
-                            </div>
-                        </div>
+                        <PrintMonster key={m.index} monster={m}/>
                     )}
                 </div>
                 <div className="row no-print">
