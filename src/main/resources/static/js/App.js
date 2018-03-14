@@ -7,12 +7,13 @@ function sign(number){
 }
 
 function Statistic(props){
-    var score = Math.floor((props.value - 10) / 2);
+    var value = props.value ? props.value : 0;
+    var score = Math.floor((value - 10) / 2);
 
     return (
         <Box title={props.name}>
             <div style={{borderBottom:"1px solid black", textAlign:"center"}}>
-                {props.value}
+                {value}
             </div>
             <div style={{textAlign:"center"}}>
                 {sign(score)}
@@ -34,28 +35,27 @@ function Skills(props){
     var monster = props.monster;
     var skills = [];
 
-    if(monster.acrobatics) skills.push(<span>acrobatics {sign(monster.acrobatics)}</span>);
-    if(monster.arcana) skills.push(<span>arcana {sign(monster.arcana)}</span>);
-    if(monster.athletics) skills.push(<span>athletics {sign(monster.athletics)}</span>);
-    if(monster.deception) skills.push(<span>deception {sign(monster.deception)}</span>);
-    if(monster.history) skills.push(<span>history {sign(monster.history)}</span>);
-    if(monster.insight) skills.push(<span>insight {sign(monster.insight)}</span>);
-    if(monster.intimidation) skills.push(<span>intimidation {sign(monster.intimidation)}</span>);
-    if(monster.investigation) skills.push(<span>investigation {sign(monster.investigation)}</span>);
-    if(monster.medicine) skills.push(<span>medicine {sign(monster.medicine)}</span>);
-    if(monster.nature) skills.push(<span>nature {sign(monster.nature)}</span>);
-    if(monster.perception) skills.push(<span>perception {sign(monster.perception)}</span>);
-    if(monster.performance) skills.push(<span>performance {sign(monster.performance)}</span>);
-    if(monster.persuasion) skills.push(<span>persuasion {sign(monster.persuasion)}</span>);
-    if(monster.religion) skills.push(<span>religion {sign(monster.religion)}</span>);
-    if(monster.stealth) skills.push(<span>stealth {sign(monster.stealth)}</span>);
-    if(monster.survival) skills.push(<span>survival {sign(monster.survival)}</span>);
+    if(monster.acrobatics) skills.push("Acrobatics " + sign(monster.acrobatics));
+    if(monster.arcana) skills.push("Arcana " + sign(monster.arcana));
+    if(monster.athletics) skills.push("Athletics " + sign(monster.athletics));
+    if(monster.deception) skills.push("Deception " + sign(monster.deception));
+    if(monster.history) skills.push("History " + sign(monster.history));
+    if(monster.insight) skills.push("Insight " + sign(monster.insight));
+    if(monster.intimidation) skills.push("Intimidation " + sign(monster.intimidation));
+    if(monster.investigation) skills.push("Investigation " + sign(monster.investigation));
+    if(monster.medicine) skills.push("Medicine " + sign(monster.medicine));
+    if(monster.nature) skills.push("Nature " + sign(monster.nature));
+    if(monster.perception) skills.push("Perception " + sign(monster.perception));
+    if(monster.performance) skills.push("Performance " + sign(monster.performance));
+    if(monster.persuasion) skills.push("Persuasion " + sign(monster.persuasion));
+    if(monster.religion) skills.push("Religion " + sign(monster.religion));
+    if(monster.stealth) skills.push("Stealth " + sign(monster.stealth));
+    if(monster.survival) skills.push("Survival " + sign(monster.survival));
 
     if(skills.length>0){
         return (
             <div>
-                <b>Skills</b>
-                {skills}
+                <b>Skills</b> {skills.join(", ")}
             </div>
         );
     }
@@ -67,28 +67,29 @@ function AbilitySaves(props){
     var monster = props.monster;
     var saves = [];
 
-    if(monster.strength_save) saves.push(<span key="str">Strength {sign(monster.strength_save)}</span>);
-    if(monster.dexterity_save) saves.push(<span key="dex">Dexterity {sign(monster.dexterity_save)}</span>);
-    if(monster.constitution_save) saves.push(<span key="con">Constitution {sign(monster.constitution_save)}</span>);
-    if(monster.intelligence_save) saves.push(<span key="int">Intelligence {sign(monster.intelligence_save)}</span>);
-    if(monster.wisdom_save) saves.push(<span key="wis">Wisdom {sign(monster.wisdom_save)}</span>);
-    if(monster.charisma_save) saves.push(<span key="cha">Charisma {sign(monster.charisma_save)}</span>);
+    if(monster.strength_save) saves.push("Str " + sign(monster.strength_save));
+    if(monster.dexterity_save) saves.push("Dex " + sign(monster.dexterity_save));
+    if(monster.constitution_save) saves.push("Con " + sign(monster.constitution_save));
+    if(monster.intelligence_save) saves.push("Int " + sign(monster.intelligence_save));
+    if(monster.wisdom_save) saves.push("Wis " + sign(monster.wisdom_save));
+    if(monster.charisma_save) saves.push("Cha " + sign(monster.charisma_save));
 
     if(saves.length>0){
         return (
             <div>
-                <b>Saving Throws</b>
-                {saves}
+                <b>Saving Throws</b> {saves.join(", ")}
             </div>
         );
     }
+
+    return <div/>;
 }
 
 function PrintMonster(props){
     var m = props.monster;
 
     return (
-        <div key={m.index} style={{padding:"5px"}}>
+        <div key={m.index} style={{padding:"5px", width:"33%"}}>
             <div style={{borderBottom: "5px double black"}}>
                 <img/>&nbsp;
             </div>
@@ -160,29 +161,27 @@ function PrintMonster(props){
                     {m.damage_immunities && <div><b>Damage Immunities</b>{m.damage_immunities}</div>}
                     {m.condition_immunities && <div><b>Condition Immunities</b>{m.condition_immunities}</div>}
                     <AbilitySaves monster={m}/>
-                    {m.special_abilities.map((s)=>{
-                        return (
-                            <div>
-                                <b>{s.name}</b> {s.desc}
-                            </div>
-                        );
-                    })}
-                    {m.actions.map((a)=>{
-                        return (
-                            <div>
-                                <b>{a.name}</b> {a.desc}
-                            </div>
-                        );
-                    })}
-                    {m.legendary_actions.map((a)=>{
-                        return (
-                            <div>
-                                <b>{a.name}</b> {a.desc}
-                            </div>
-                        );
-                    })}
+                    {m.special_abilities && m.special_abilities.map((s)=>
+                        <Action action={s}/>
+                    )}
+                    {m.actions && m.actions.map((a)=>
+                        <Action action={a}/>
+                    )}
+                    {m.legendary_actions && m.legendary_actions.map((a)=>
+                        <Action action={a}/>
+                    )}
                 </Box>
             </div>
+        </div>
+    );
+}
+
+function Action(props){
+    var action = props.action;
+
+    return (
+        <div>
+            <b>{action.name}</b> {action.desc}
         </div>
     );
 }
@@ -191,7 +190,7 @@ class App extends React.Component {
 
     constructor(props){
         super(props);
-        this.state = {filter: '', monsters:[], selected:[]};
+        this.state = {filter: 'vampire', monsters:[], selected:[]};
     }
 
     componentDidMount(){
