@@ -1,10 +1,4 @@
-function sign(number){
-    if(number>0){
-        return "+" + number;
-    } else {
-        return number;
-    }
-}
+// Custom Tags
 
 function Statistic(props){
     var value = props.value ? props.value : 0;
@@ -154,21 +148,29 @@ function PrintMonster(props){
                 </Box>
             </div>
             <div>
+                <Box title="Defenses">
+                    {m.damage_vulnerabilities && <div><b>Damage Vulnerabilities</b> {m.damage_vulnerabilities}</div>}
+                    {m.damage_resistances && <div><b>Damage Resistances</b> {m.damage_resistances}</div>}
+                    {m.damage_immunities && <div><b>Damage Immunities</b> {m.damage_immunities}</div>}
+                    {m.condition_immunities && <div><b>Condition Immunities</b> {m.condition_immunities}</div>}
+                    <AbilitySaves monster={m}/>
+                </Box>
+            </div>
+            <div>
                 <Box title="Traits">
                     <Skills monster={m}/>
-                    {m.damage_vulnerabilities && <div><b>Damage Vulnerabilities</b>{m.damage_vulnerabilities}</div>}
-                    {m.damage_resistances && <div><b>Damage Resistances</b>{m.damage_resistances}</div>}
-                    {m.damage_immunities && <div><b>Damage Immunities</b>{m.damage_immunities}</div>}
-                    {m.condition_immunities && <div><b>Condition Immunities</b>{m.condition_immunities}</div>}
-                    <AbilitySaves monster={m}/>
-                    {m.special_abilities && m.special_abilities.map((s)=>
-                        <Action action={s}/>
+                    {m.special_abilities && m.special_abilities.map((s,i)=>
+                        <Action key={i} action={s}/>
                     )}
-                    {m.actions && m.actions.map((a)=>
-                        <Action action={a}/>
+                </Box>
+            </div>
+            <div>
+                <Box title="Actions">
+                    {m.actions && m.actions.map((a,i)=>
+                        <Action key={i} action={a}/>
                     )}
-                    {m.legendary_actions && m.legendary_actions.map((a)=>
-                        <Action action={a}/>
+                    {m.legendary_actions && m.legendary_actions.map((a,i)=>
+                        <Action key={i} action={a}/>
                     )}
                 </Box>
             </div>
@@ -282,6 +284,16 @@ class App extends React.Component {
         this.setState({selected:newSelected});
     }
 
+}
+
+// Functions
+
+function sign(number){
+    if(number > 0){
+        return "+" + number;
+    } else {
+        return number;
+    }
 }
 
 ReactDOM.render(React.createElement(App), document.getElementById('root'));
