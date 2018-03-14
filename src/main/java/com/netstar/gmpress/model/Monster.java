@@ -38,17 +38,17 @@ public class Monster {
     private Integer dexterity_save;
 
     // Skills
-    private Integer arcana;
     private Integer acrobatics;
-    private Integer history;
-    private Integer perception;
+    private Integer arcana;
     private Integer athletics;
     private Integer deception;
+    private Integer history;
     private Integer insight;
-    private Integer medicine;
     private Integer intimidation;
     private Integer investigation;
+    private Integer medicine;
     private Integer nature;
+    private Integer perception;
     private Integer performance;
     private Integer persuasion;
     private Integer religion;
