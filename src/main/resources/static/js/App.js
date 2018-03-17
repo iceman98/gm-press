@@ -196,7 +196,14 @@ class App extends React.Component {
 
     constructor(props){
         super(props);
-        this.state = {filter: '', monsters:[], selected:[], popup: null};
+
+        var state = JSON.parse(window.localStorage.getItem("state"));
+
+        if(state){
+            this.state = state;
+        } else {
+            this.state = {filter: '', monsters:[], selected:[], popup: null};
+        }
     }
 
     componentDidMount(){
@@ -212,7 +219,7 @@ class App extends React.Component {
     }
 
     render() {
-        console.log(JSON.stringify(this.state));
+        window.localStorage.setItem("state", JSON.stringify(this.state));
 
         var monsters = [];
 
