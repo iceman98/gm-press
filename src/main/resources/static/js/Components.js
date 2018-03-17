@@ -188,7 +188,7 @@ function Action(props){
 
 function Results(props){
     return (
-        <div>
+        <div className="results-row">
             {props.results.map((r)=>
                 <div className="image-result-container" key={r._id}>
                     <img src={r.thumbnail} onClick={()=>props.popup.setMonster(r.media_fullsize)}/>

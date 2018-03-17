@@ -44,7 +44,12 @@
 }
 
 .image-result-container {
-    display: inline-block;
+    flex: 1;
+    padding: 5px;
+}
+
+.image-result-container:hover {
+    filter: brightness(90%);
 }
 
 .statistic-score {
@@ -61,4 +66,10 @@
     position: absolute;
     z-index: 1;
     background: white;
+    padding: 10px;
+}
+
+.results-row {
+    display: flex;
+    flex-wrap: wrap;
 }
