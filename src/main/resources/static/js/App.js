@@ -85,7 +85,11 @@ function PrintMonster(props){
     return (
         <div key={m.index} style={{padding:"5px", width:"33%"}}>
             <div style={{borderBottom: "5px double black"}}>
-                <img/>&nbsp;
+                {m.image ?
+                    <img src={m.image} style={{transform:"rotate(180deg)"}} onClick={() => props.app.setState({popup:m})}/>
+                :
+                    <button onClick={() => props.app.setState({popup:m})}>Find image</button>
+                }
             </div>
             <div>
                 <Box title="Name">
@@ -192,7 +196,7 @@ class App extends React.Component {
 
     constructor(props){
         super(props);
-        this.state = {filter: 'vampire', monsters:[], selected:[]};
+        this.state = {filter: '', monsters:[], selected:[], popup: null};
     }
 
     componentDidMount(){
@@ -216,6 +220,7 @@ class App extends React.Component {
 
         return (
             <div className="col">
+                {this.state.popup && <Popup app={this} monster={this.state.popup}/>}
                 <div className="row no-print">
                     <div className="col">Filter</div>
                     <div className="col">
@@ -224,7 +229,7 @@ class App extends React.Component {
                 </div>
                 <div className="row">
                     {this.state.selected.map((m)=>
-                        <PrintMonster key={m.index} monster={m}/>
+                        <PrintMonster key={m.index} monster={m} app={this}/>
                     )}
                 </div>
                 <div className="row no-print">
@@ -293,6 +298,61 @@ function sign(number){
         return "+" + number;
     } else {
         return number;
+    }
+}
+
+function Results(props){
+    return (
+        <div>
+            {props.results.map((r)=>
+                <div style={{display: "inline-block"}} key={r._id}>
+                    <img src={r.thumbnail} onClick={()=>props.popup.setMonster(r.media_fullsize)}/>
+                    <div>{r.width} x {r.height}</div>
+                </div>
+            )}
+        </div>
+    );
+}
+
+class Popup extends React.Component {
+
+    constructor(props){
+        super(props);
+        this.state = {monster: props.monster};
+        this.app = props.app;
+    }
+
+    componentDidMount(){
+        var me = this;
+
+        var monster = this.state.monster;
+        var query = encodeURIComponent("dnd " + monster.name);
+
+        $.ajax('https://crossorigin.me/https://api.qwant.com/api/search/images?count=10&offset=1&q=' + query, {dataType:'json', success: function(data){
+            me.setState({results:data.data.result.items});
+        }});
+    }
+
+    render() {
+        var monster = this.state.monster;
+
+        if(this.state.monster){
+            return (
+                <div>
+                    <h1>{monster.name}</h1>
+                    {this.state.results && <Results results={this.state.results} popup={this}/>}
+                    <button onClick={()=>this.app.setState({popup:null})}>Close</button>
+                </div>
+            );
+        }
+
+        return null;
+    }
+
+    setMonster(url){
+        var monsters = this.app.state.monsters;
+        this.state.monster.image = url;
+        this.app.setState({popup: null, monsters: monsters});
     }
 }
 
