@@ -82,6 +82,7 @@ function PrintMonster(props){
 
     return (
         <div key={m.index} className="print-monster-column">
+            <div className="print-monster-separator-top"/>
             <div className="print-monster-image-container">
                 {m.image ?
                     <img src={m.image} onClick={() => props.app.setState({popup:m})}/>
@@ -172,6 +173,7 @@ function PrintMonster(props){
                     )}
                 </Box>
             </div>
+            <div className="print-monster-separator-bottom"/>
         </div>
     );
 }

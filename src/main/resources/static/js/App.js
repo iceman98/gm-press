@@ -44,17 +44,7 @@ class App extends React.Component {
                 </div>
                 <div className="row">
                     {this.state.selected.map((m)=>
-                        <div key={m.index} className="print-monster-column print-monster-separator"/>
-                    )}
-                </div>
-                <div className="row">
-                    {this.state.selected.map((m)=>
                         <PrintMonster key={m.index} monster={m} app={this}/>
-                    )}
-                </div>
-                <div className="row">
-                    {this.state.selected.map((m)=>
-                        <div key={m.index} className="print-monster-column print-monster-separator"/>
                     )}
                 </div>
                 <div className="row no-print">

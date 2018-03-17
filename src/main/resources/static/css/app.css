@@ -1,7 +1,15 @@
 @media print {
-    .no-print { display: none; }
-    @page {size: landscape}
-    .page-break {page-break-after: always}
+    .no-print {
+        display: none!important;
+    }
+
+    @page {
+        size: landscape
+    }
+
+    .page-break {
+        page-break-after: always
+    }
 }
 
 .box {
@@ -19,11 +27,23 @@
 
 .print-monster-column {
     padding: 5px;
-    width: 25%;
+    width: 24%;
 }
 
-.print-monster-separator {
+.print-monster-separator-top {
     border-right: 1px darkgray solid;
+    height: 20px;
+    margin-bottom: -20px;
+    width: 100%;
+    padding: 0 5px 0 0;
+}
+
+.print-monster-separator-bottom {
+    border-right: 1px darkgray solid;
+    height: 20px;
+    margin-top: -20px;
+    width: 100%;
+    padding: 0 5px 0 0;
 }
 
 .print-monster-image-container {
@@ -72,4 +92,13 @@
 .results-row {
     display: flex;
     flex-wrap: wrap;
+}
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.col {
+    flex: 1;
 }
