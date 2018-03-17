@@ -6,10 +6,10 @@ function Statistic(props){
 
     return (
         <Box title={props.name}>
-            <div style={{borderBottom:"1px solid black", textAlign:"center"}}>
+            <div className="statistic-score">
                 {value}
             </div>
-            <div style={{textAlign:"center"}}>
+            <div className="statistic-modifier">
                 {sign(score)}
             </div>
         </Box>
@@ -18,8 +18,8 @@ function Statistic(props){
 
 function Box(props){
     return (
-        <div style={{border: "1px solid black", display: "table-cell"}}>
-            <div style={{textAlign: "right", fontSize: "xx-small", marginBottom: "-10px", color: "darkgray"}}>{props.title}</div>
+        <div className="box">
+            <div className="box-title">{props.title}</div>
             <div>{props.children}</div>
         </div>
     );
@@ -83,10 +83,10 @@ function PrintMonster(props){
     var m = props.monster;
 
     return (
-        <div key={m.index} style={{padding:"5px", width:"33%"}}>
-            <div style={{borderBottom: "5px double black"}}>
+        <div key={m.index} className="print-monster-column">
+            <div className="print-monster-image-container">
                 {m.image ?
-                    <img src={m.image} style={{transform:"rotate(180deg)"}} onClick={() => props.app.setState({popup:m})}/>
+                    <img src={m.image} onClick={() => props.app.setState({popup:m})}/>
                 :
                     <button onClick={() => props.app.setState({popup:m})}>Find image</button>
                 }
@@ -96,7 +96,7 @@ function PrintMonster(props){
                     {m.name}
                 </Box>
             </div>
-            <div style={{display:"table-row"}}>
+            <div className="print-monster-row">
                 <Box title="Size">
                     {m.size}
                 </Box>
@@ -305,7 +305,7 @@ function Results(props){
     return (
         <div>
             {props.results.map((r)=>
-                <div style={{display: "inline-block"}} key={r._id}>
+                <div className="image-result-container" key={r._id}>
                     <img src={r.thumbnail} onClick={()=>props.popup.setMonster(r.media_fullsize)}/>
                     <div>{r.width} x {r.height}</div>
                 </div>

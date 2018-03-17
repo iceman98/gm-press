@@ -15,6 +15,49 @@
             @page {size: landscape}
             .page-break {page-break-after: always}
         }
+
+        .box {
+            border: 1px solid black;
+            display: table-cell;
+        }
+
+        .box-title {
+            text-align: right;
+            font-size: xx-small;
+            margin-bottom: -10px;
+            color: darkgray;
+        }
+
+        .print-monster-column {
+            padding: 5px;
+            width: 33%;
+        }
+
+        .print-monster-image-container {
+            border-bottom: 5px double black;
+        }
+
+        .print-monster-image-container img {
+            transform: rotate(180deg);
+            width: 100%;
+        }
+
+        .print-monster-row {
+            display: table-row;
+        }
+
+        .image-result-container {
+            display: inline-block;
+        }
+
+        .statistic-score {
+            border-bottom: 1px solid black;
+            text-align: center;
+        }
+
+        .statistic-modifier {
+            text-align: center;
+        }
     </style>
 </head>
 <body>
