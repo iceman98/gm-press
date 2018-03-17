@@ -88,7 +88,7 @@ function PrintMonster(props){
                 {m.image ?
                     <img src={m.image} onClick={() => props.app.setState({popup:m})}/>
                 :
-                    <button onClick={() => props.app.setState({popup:m})}>Find image</button>
+                    <button className="no-print" onClick={() => props.app.setState({popup:m})}>Find image</button>
                 }
             </div>
             <div>
@@ -212,6 +212,8 @@ class App extends React.Component {
     }
 
     render() {
+        console.log(JSON.stringify(this.state));
+
         var monsters = [];
 
         this.state.monsters.map((m)=>{
@@ -229,7 +231,17 @@ class App extends React.Component {
                 </div>
                 <div className="row">
                     {this.state.selected.map((m)=>
+                        <div key={m.index} className="print-monster-column print-monster-separator"/>
+                    )}
+                </div>
+                <div className="row">
+                    {this.state.selected.map((m)=>
                         <PrintMonster key={m.index} monster={m} app={this}/>
+                    )}
+                </div>
+                <div className="row">
+                    {this.state.selected.map((m)=>
+                        <div key={m.index} className="print-monster-column print-monster-separator"/>
                     )}
                 </div>
                 <div className="row no-print">
