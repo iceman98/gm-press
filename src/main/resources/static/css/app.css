@@ -1,0 +1,64 @@
+@media print {
+    .no-print { display: none; }
+    @page {size: landscape}
+    .page-break {page-break-after: always}
+}
+
+.box {
+    border: 1px solid black;
+    flex: 1;
+    padding: 0px 2px;
+}
+
+.box-title {
+    text-align: right;
+    font-size: xx-small;
+    margin-bottom: -10px;
+    color: darkgray;
+}
+
+.print-monster-column {
+    padding: 5px;
+    width: 25%;
+}
+
+.print-monster-separator {
+    border-right: 1px darkgray solid;
+}
+
+.print-monster-image-container {
+    border-bottom: 5px double black;
+    height: 200px;
+}
+
+.print-monster-image-container img {
+    transform: rotate(180deg);
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.print-monster-row {
+    display: flex;
+    padding: 1px 0px;
+}
+
+.image-result-container {
+    display: inline-block;
+}
+
+.statistic-score {
+    border-bottom: 1px solid black;
+    text-align: center;
+}
+
+.statistic-modifier {
+    text-align: center;
+}
+
+.popup {
+    border: 1px black solid;
+    position: absolute;
+    z-index: 1;
+    background: white;
+}
