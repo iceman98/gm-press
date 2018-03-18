@@ -69,7 +69,7 @@ function AbilitySaves(props){
     if(saves.length>0){
         return (
             <div>
-                <b>Saving Throws</b> {saves.join(", ")}
+                <b>Saves</b> {saves.join(", ")}
             </div>
         );
     }
@@ -91,7 +91,7 @@ function PrintMonster(props){
     var m = props.monster;
 
     return (
-        <div key={m.index} className="print-monster-column page-break">
+        <div key={m.index} className="print-monster-column">
             <div className="print-monster-separator-top"/>
             <div className="print-monster-image-container">
                 {m.image ?
@@ -158,13 +158,17 @@ function PrintMonster(props){
                 </Box>
             </div>
             <div className="print-monster-row">
-                <Box title="Defenses">
-                    {m.damage_vulnerabilities && <div><b>Vulnerabilities</b> {m.damage_vulnerabilities}</div>}
-                    {m.damage_resistances && <div><b>Resistances</b> {m.damage_resistances}</div>}
-                    {m.damage_immunities && <div><b>Immunities</b> {m.damage_immunities}</div>}
-                    {m.condition_immunities && <div><b>Condition Immunities</b> {m.condition_immunities}</div>}
-                    <AbilitySaves monster={m}/>
-                </Box>
+                {hasDefenses(m) ?
+                    <Box title="Defenses">
+                        {m.damage_vulnerabilities && <div><b>Vulnerabilities</b> {m.damage_vulnerabilities}</div>}
+                        {m.damage_resistances && <div><b>Resistances</b> {m.damage_resistances}</div>}
+                        {m.damage_immunities && <div><b>Immunities</b> {m.damage_immunities}</div>}
+                        {m.condition_immunities && <div><b>Condition Immunities</b> {m.condition_immunities}</div>}
+                        <AbilitySaves monster={m}/>
+                    </Box>
+                :
+                    <Box title="Defenses"> -- </Box>
+                }
             </div>
             <div className="print-monster-row">
                 <Box title="Traits">

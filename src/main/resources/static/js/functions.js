@@ -37,3 +37,7 @@ function paginate(array, pageSize){
     pages.push(page);
     return pages;
 }
+
+function hasDefenses(m){
+    return m.damage_vulnerabilities || m.damage_resistances || m.damage_immunities || m.condition_immunities || m.strength_save || m.dexterity_save || m.constitution_save || m.intelligence_save || m.wisdom_save || m.charisma_save;
+}
