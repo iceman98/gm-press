@@ -4,7 +4,8 @@
     }
 
     @page {
-        size: landscape
+        size: landscape;
+        margin: 0;
     }
 
     .page-break {
@@ -19,7 +20,7 @@
     border: 1px solid black;
     flex: 1;
     padding: 0px 2px;
-    margin: 0px 2px;
+    margin: 0px 1px;
     border-radius: 4px;
 }
 
@@ -52,9 +53,16 @@
 }
 
 .print-monster-image-container {
-    border-bottom: 5px double black;
     height: 200px;
     margin: 5px 0px;
+}
+
+.print-monster-image-separator {
+    border-top: 1px darkgray solid;
+    border-bottom: 1px darkgray solid;
+    height: 5px;
+    margin-top: 5px;
+    margin-bottom: 5px;
 }
 
 .print-monster-image-container img {

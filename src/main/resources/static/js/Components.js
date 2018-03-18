@@ -100,6 +100,7 @@ function PrintMonster(props){
                     <button className="no-print" onClick={() => props.app.setState({popup:m})}>Find image</button>
                 }
             </div>
+            <div className="print-monster-image-separator"></div>
             <div className="print-monster-row">
                 <Box title="Name" ratio="4">
                     {m.name}
@@ -179,7 +180,7 @@ function PrintMonster(props){
                         <Action key={i} action={a}/>
                     )}
                     {m.legendary_actions && m.legendary_actions.map((a,i)=>
-                        <Action key={i} action={a}/>
+                        <Action key={i} action={a} legendary={true}/>
                     )}
                 </Box>
             </div>
@@ -191,11 +192,19 @@ function PrintMonster(props){
 function Action(props){
     var action = props.action;
 
-    return (
-        <div>
-            <b>{action.name}</b> {action.desc}
-        </div>
-    );
+    if(props.legendary){
+        return (
+            <div>
+                <b><u>{action.name}</u></b> {action.desc}
+            </div>
+        )
+    } else {
+        return (
+            <div>
+                <b>{action.name}</b> {action.desc}
+            </div>
+        );
+    }
 }
 
 function Results(props){
