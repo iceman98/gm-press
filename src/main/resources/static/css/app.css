@@ -99,7 +99,7 @@
 
 .popup {
     border: 1px black solid;
-    position: absolute;
+    position: fixed;
     z-index: 1;
     background: white;
     padding: 10px;
