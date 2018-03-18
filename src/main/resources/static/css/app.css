@@ -8,7 +8,10 @@
     }
 
     .page-break {
-        page-break-after: always
+        page-break-after: always;
+        page-break-inside: avoid;
+        -webkit-region-break-inside: avoid;
+        -webkit-region-break-after: always;
     }
 }
 
@@ -16,6 +19,8 @@
     border: 1px solid black;
     flex: 1;
     padding: 0px 2px;
+    margin: 0px 2px;
+    border-radius: 4px;
 }
 
 .box-title {
@@ -49,6 +54,7 @@
 .print-monster-image-container {
     border-bottom: 5px double black;
     height: 200px;
+    margin: 5px 0px;
 }
 
 .print-monster-image-container img {

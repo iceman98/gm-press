@@ -20,3 +20,19 @@ function filteredSenses(monster){
     var pp = passivePerception(monster);
     return monster.senses.split(",").map((s)=>s.trim()).filter((s)=>s != "passive Perception " + pp).join(", ");
 }
+
+function paginate(array, pageSize){
+    var pages = [];
+    var page = [];
+    var count = 0;
+    for(var index in array){
+        if(page.length == pageSize){
+            pages.push(page);
+            page = [];
+        }
+        var element = array[index];
+        page.push(element);
+    }
+    pages.push(page);
+    return pages;
+}

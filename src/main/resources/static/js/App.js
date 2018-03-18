@@ -33,6 +33,8 @@ class App extends React.Component {
             if(this.state.filter == '' || m.name.toUpperCase().includes(this.state.filter.toUpperCase())) monsters.push(m);
         });
 
+        var monsterPages = paginate(this.state.selected, 4);
+
         return (
             <div className="col">
                 {this.state.popup && <Popup app={this} monster={this.state.popup}/>}
@@ -42,11 +44,9 @@ class App extends React.Component {
                         <input type="text" value={this.state.filter} onChange={(e) => this.onFilterChange(e)} />
                     </div>
                 </div>
-                <div className="row">
-                    {this.state.selected.map((m)=>
-                        <PrintMonster key={m.index} monster={m} app={this}/>
-                    )}
-                </div>
+                {monsterPages.map((p,i)=>
+                    <MonsterPage key={i} page={p} app={this}/>
+                )}
                 <div className="row no-print">
                     <div className="col">
                         {monsters.map((m)=>
