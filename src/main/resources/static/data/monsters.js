@@ -16505,4 +16505,60 @@
         "damage_bonus": 1
     }],
    	"url": "http://www.dnd5eapi.co/api/monsters/1000"
+}, {
+   	"index": 1001,
+   	"name": "Wereraven",
+   	"size": "Medium",
+   	"type": "humanoid",
+   	"subtype": "human, shapechanger",
+   	"alignment": "lawful good",
+   	"armor_class": 12,
+   	"hit_points": 31,
+   	"hit_dice": "7d8",
+   	"speed": "30 ft. (fly 50 ft. in raven and hybrid form)",
+   	"strength": 10,
+   	"dexterity": 15,
+   	"constitution": 11,
+   	"intelligence": 13,
+   	"wisdom": 15,
+   	"charisma": 14,
+   	"insight": 4,
+   	"perception": 6,
+   	"damage_immunities": "bludgeoning, piercing, and slashing damage from nonmagical weapons that aren't silvered",
+   	"senses": "passive Perception 16",
+   	"languages": "Common (can't speak in raven form)",
+   	"challenge_rating": 2,
+   	"special_abilities": [{
+   		"name": "Shapechanger",
+   		"desc": "The wereraven can use its action to polymorph into a raven-humanoid hybrid or into a raven, or back into its true form, which is humanoid. Its statistics, other than its size, are the same in each form. Any equipment it is wearing or carrying isn't transformed. It reverts to its true form if it dies.",
+   		"attack_bonus": 0
+   	}, {
+   		"name": "Mimicry",
+   		"desc": "The wereraven can mimic simple sounds it has heard, such as a person whispering, a baby crying, or an animal chittering. A creature that hears the sounds can tell they are imitations with a successful DC 10 Wisdom (Insight) check.",
+   		"attack_bonus": 0
+   	}],
+   	"actions": [{
+   		"name": "Multiattack (Humanoid or Hybrid Form Only)",
+   		"desc": "The wereraven makes two weapon attacks, one of which can be with its hand crossbow.",
+   		"attack_bonus": 0
+   	}, {
+   		"name": "Beak (Raven or Hybrid Form Only)",
+   		"desc": "Melee Weapon Attack: +4 to hit, reach 5 ft., one target. Hit: l piercing damage in raven form, or 4 (ld4 + 2) piercing damage in hybrid form. If the target is a humanoid, it must succeed on a DC 10 Constitution saving throw or be cursed with wereraven lycanthropy.",
+   		"attack_bonus": 4,
+   		"damage_dice": "1d4",
+   		"damage_bonus": 2
+   	}, {
+   		"name": "Shortsword (Humanoid or Hybrid Form Only)",
+   		"desc": "Melee Weapon Attack: +4 to hit, reach 5 ft., one target. Hit: 5 (1d6 + 2) piercing damage.",
+   		"attack_bonus": 4,
+   		"damage_dice": "1d6",
+   		"damage_bonus": 2
+   	}, {
+   		"name": "Hand Crossbow (Humanoid or Hybrid Form Only)",
+   		"desc": "Weapon Attack: +4 to hit, range 30/120 ft., one target. Hit: 5 (ld6 + 2) piercing damage.",
+   		"attack_bonus": 4,
+   		"damage_dice": "1d6",
+   		"damage_bonus": 2
+   	}],
+   	"url": "http://www.dnd5eapi.co/api/monsters/1001"
 }]
