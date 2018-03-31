@@ -59,12 +59,12 @@ function AbilitySaves(props){
     var monster = props.monster;
     var saves = [];
 
-    if(monster.strength_save) saves.push("Str " + sign(monster.strength_save));
-    if(monster.dexterity_save) saves.push("Dex " + sign(monster.dexterity_save));
-    if(monster.constitution_save) saves.push("Con " + sign(monster.constitution_save));
-    if(monster.intelligence_save) saves.push("Int " + sign(monster.intelligence_save));
-    if(monster.wisdom_save) saves.push("Wis " + sign(monster.wisdom_save));
-    if(monster.charisma_save) saves.push("Cha " + sign(monster.charisma_save));
+    if(monster.strength_save || monster.strength_save == 0) saves.push("Str " + sign(monster.strength_save));
+    if(monster.dexterity_save || monster.dexterity_save == 0) saves.push("Dex " + sign(monster.dexterity_save));
+    if(monster.constitution_save || monster.constitution_save == 0) saves.push("Con " + sign(monster.constitution_save));
+    if(monster.intelligence_save || monster.intelligence_save == 0) saves.push("Int " + sign(monster.intelligence_save));
+    if(monster.wisdom_save || monster.wisdom_save == 0) saves.push("Wis " + sign(monster.wisdom_save));
+    if(monster.charisma_save || monster.charisma_save == 0) saves.push("Cha " + sign(monster.charisma_save));
 
     if(saves.length>0){
         return (
@@ -93,6 +93,9 @@ function PrintMonster(props){
     return (
         <div key={m.index} className="print-monster-column">
             <div className="print-monster-separator-top"/>
+            <div className="no-print">
+                <button onClick={() => props.app.onRemoveMonster(null, m)}>Remove</button>
+            </div>
             <div className="print-monster-image-container">
                 {m.image ?
                     <img src={m.image} onClick={() => props.app.setState({popup:m})}/>

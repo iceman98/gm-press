@@ -16458,4 +16458,51 @@
 		"damage_bonus": 1
 	}],
 	"url": "http://www.dnd5eapi.co/api/monsters/325"
+}, {
+   	"index": 1000,
+   	"name": "Strahd Zombie",
+   	"size": "Medium",
+   	"type": "undead",
+   	"subtype": "",
+   	"alignment": "unaligned",
+   	"armor_class": 8,
+   	"hit_points": 30,
+   	"hit_dice": "4d8+12",
+   	"speed": "20 ft.",
+   	"strength": 13,
+   	"dexterity": 6,
+   	"constitution": 16,
+   	"intelligence": 3,
+   	"wisdom": 6,
+   	"charisma": 5,
+   	"wisdom_save": 0,
+   	"damage_vulnerabilities": "",
+   	"damage_resistances": "",
+   	"damage_immunities": "poison",
+   	"condition_immunities": "poisoned",
+   	"senses": "darkvision 60 ft., passive Perception 8",
+   	"languages": "understands all languages it spoke in life but can't speak",
+   	"challenge_rating": 1,
+   	"special_abilities": [{
+   		"name": "Loathsome Limbs",
+   		"desc": "Whenever the zombie takes at least 5 bludgeoning or slashing damage at one time, roll a d20 to determine what else happens to it:\n\n1-8: One leg is severed from the zombie if it has any legs left.\n9-16: One arm is severed from the zombie if it has any arms left.\n17-20: The zombie is decapitated.\n\nIf the zombie is reduced to O hit points, all parts of it die. Until then, a severed part acts on the zombie's initiative and has its own action and movement. A severed part has AC 8. Any damage it takes is subtracted from the zombie's hit points.\nA severed leg is unable to attack and has a speed of 5 fet.\nA severed arm has a speed of 5 feet and can make one claw attack on its turn, with disadvantage on the attack roll. Each time the zombie loses an arm, it loses a claw attack.\nIf its head is severed, the zombie loses its bite attack and its body is blinded unless the head can see it. The severed head has a speed of O feet. It can make a bite attack, but only against a target in its space.\nThe zombie's speed is halved if it's missing a leg. lf it loses both legs, it falls prone. If it has both arms, it can crawl. With only one arm, it can still crawl, but its speed is halved. With no arms or legs, its speed is O feet, and it can't benefit from bonuses to speed.",
+   		"attack_bonus": 0
+   	}],
+   	"actions": [{
+   		"name": "Multiattack",
+   		"desc": "The zombie makes three attacks: one with its bite and two with its claws."
+   	}, {
+        "name": "Bite",
+        "desc": "Melee Weapon Attack: +3 to hit, reach 5 ft., one target. Hit: 3 (ld4 + 1) piercing damage.",
+        "attack_bonus": 3,
+        "damage_dice": "1d4",
+        "damage_bonus": 1
+    }, {
+        "name": "Claw",
+        "desc": "Melee Weapon Attack: +3 to hit, reach 5 ft., one target. Hit: 4 (ld6 + 1) slashing damage.",
+        "attack_bonus": 3,
+        "damage_dice": "1d6",
+        "damage_bonus": 1
+    }],
+   	"url": "http://www.dnd5eapi.co/api/monsters/1000"
 }]
