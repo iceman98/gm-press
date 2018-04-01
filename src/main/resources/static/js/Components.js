@@ -120,7 +120,7 @@ function PrintMonster(props){
                     {m.size}
                 </Box>
                 <Box title="Type">
-                    {m.type}
+                    {m.type} {m.subtype ? '(' + m.subtype + ')':''}
                 </Box>
                 <Box title="Alignment">
                     {m.alignment}
