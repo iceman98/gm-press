@@ -218,7 +218,7 @@ function Results(props){
     return (
         <div className="columns is-multiline">
             {props.results.map((r)=>
-                <div className="column is-3">
+                <div className="column is-3" key={r._id}>
                     <div className="card image-result-container" key={r._id}>
                         <div className="card-image">
                             <img src={r.thumbnail} onClick={()=>props.popup.setMonster(r.media_fullsize)}/>
