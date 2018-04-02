@@ -8,7 +8,7 @@ class App extends React.Component {
         if(state){
             this.state = state;
         } else {
-            this.state = {filter: '', monsters:[], selected:[], popup: null};
+            this.state = {filter: '', typeFilter: '', crFilter: '', monsters:[], selected:[], popup: null};
         }
     }
 
@@ -28,30 +28,59 @@ class App extends React.Component {
         window.localStorage.setItem("state", JSON.stringify(this.state));
 
         var monsters = [];
+        var typeList = [""];
+        var crList = [""];
 
-        this.state.monsters.map((m)=>{
-            if(this.state.filter == '' || m.name.toUpperCase().includes(this.state.filter.toUpperCase())) monsters.push(m);
+        this.state.monsters.map((m)=> {
+            if(this.isValid(this.state, m)) monsters.push(m);
+            if(!typeList.includes(m.type)) typeList.push(m.type);
+            if(!crList.includes(challengeRating(m.challenge_rating))) crList.push(challengeRating(m.challenge_rating));
         });
+
+        typeList = typeList.sort();
+        typeList[0] = "all";
+        crList = crList.sort();
+        crList[0] = "all";
 
         var monsterPages = paginate(this.state.selected, 4);
 
         return (
             <div>
+                <h1 className="title">GM-Print</h1>
                 {this.state.popup && <Popup app={this} monster={this.state.popup}/>}
-                <div className="row no-print field narrow">
-                    <div className="col label">Name filter</div>
-                    <div className="col control">
-                        <input type="text" className="input" value={this.state.filter} onChange={(e) => this.onFilterChange(e)} />
+                <div className="no-print box">
+                    <h2 className="subtitle">Monsters</h2>
+                    <div className="row bold-row">
+                        <div className="col">Name</div>
+                        <div className="col">Type</div>
+                        <div className="col">CR</div>
+                        <div className="col">Action</div>
                     </div>
-                </div>
-                <div className="row no-print narrow scrollable">
-                    <div className="col">
-                        <div className="row bold-row">
-                            <div className="col">Name</div>
-                            <div className="col">Type</div>
-                            <div className="col">CR</div>
-                            <div className="col">Action</div>
+                    <div className="row">
+                        <div className="col field control">
+                            <input type="text" className="input is-small" placeholder="name filter" value={this.state.filter} onChange={(e) => this.onFilterChange(e)} />
                         </div>
+                        <div className="col field control">
+                            <div className="select is-small">
+                                <select onChange={(e) => this.onTypeChange(e)} defaultValue={this.state.typeFilter}>
+                                    {typeList.map((t)=>
+                                        <option value={t} key={t}>{t}</option>
+                                    )}
+                                </select>
+                            </div>
+                        </div>
+                        <div className="col field control">
+                            <div className="select is-small">
+                                <select defaultValue={this.state.crFilter} onChange={(e) => this.onCrChange(e)}>
+                                    {crList.map((cr)=>
+                                        <option value={cr} key={cr}>{cr}</option>
+                                    )}
+                                </select>
+                            </div>
+                        </div>
+                        <div className="col"></div>
+                    </div>
+                    <div className="scrollable">
                         {monsters.map((m)=>
                             <div key={m.index} className="row">
                                 <div className="col">{m.name}</div>
@@ -62,6 +91,9 @@ class App extends React.Component {
                         )}
                     </div>
                 </div>
+                <div className="no-print box">
+                    <h2 className="subtitle">Print options</h2>
+                </div>
                 {monsterPages.map((p,i)=>
                     <MonsterPage key={i} page={p} app={this}/>
                 )}
@@ -71,6 +103,14 @@ class App extends React.Component {
 
     onFilterChange(e){
         this.setState({filter:e.target.value});
+    }
+
+    onTypeChange(e){
+        this.setState({typeFilter:e.target.value});
+    }
+
+    onCrChange(e){
+        this.setState({crFilter:e.target.value});
     }
 
     addRemoveButton(selected, monster){
@@ -105,6 +145,21 @@ class App extends React.Component {
         this.setState({selected:newSelected});
     }
 
+    isValid(state, monster){
+        if(!(!state.filter || state.filter == '' || monster.name.toUpperCase().includes(state.filter.toUpperCase()))){
+            return false;
+        }
+
+        if(!(!state.typeFilter || state.typeFilter == 'all' || monster.type == state.typeFilter)){
+            return false;
+        }
+
+        if(!(!state.typeFilter || state.crFilter == 'all' || challengeRating(monster.challenge_rating) == state.crFilter)){
+            return false;
+        }
+
+        return true;
+    }
 }
 
 ReactDOM.render(React.createElement(App), document.getElementById('root'));
