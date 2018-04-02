@@ -16,7 +16,7 @@ function Statistic(props){
 
 function Box(props){
     return (
-        <div className="box" style={{flex: props.ratio}}>
+        <div className="boxed" style={{flex: props.ratio}}>
             <div className="box-title">{props.title}</div>
             <div>{props.children}</div>
         </div>
@@ -94,13 +94,13 @@ function PrintMonster(props){
         <div key={m.index} className="print-monster-column">
             <div className="print-monster-separator-top"/>
             <div className="no-print">
-                <button onClick={() => props.app.onRemoveMonster(null, m)}>Remove</button>
+                <a className="delete is-pulled-right" onClick={() => props.app.onRemoveMonster(null, m)}/>
             </div>
             <div className="print-monster-image-container">
                 {m.image ?
                     <img src={m.image} onClick={() => props.app.setState({popup:m})}/>
                 :
-                    <button className="no-print" onClick={() => props.app.setState({popup:m})}>Find image</button>
+                    <button className="no-print button is-outlined is-info" onClick={() => props.app.setState({popup:m})}>Find image</button>
                 }
             </div>
             <div className="print-monster-image-separator"></div>

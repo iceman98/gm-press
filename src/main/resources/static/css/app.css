@@ -16,7 +16,7 @@
     }
 }
 
-.box {
+.boxed {
     border: 1px solid black;
     flex: 1;
     padding: 0px 2px;
@@ -44,6 +44,7 @@
     margin-bottom: -20px;
     width: 100%;
     padding: 0 5px 0 0;
+    box-sizing: initial;
 }
 
 .print-monster-separator-bottom {
@@ -52,6 +53,7 @@
     margin-top: -20px;
     width: 100%;
     padding: 0 5px 0 0;
+    box-sizing: initial;
 }
 
 .print-monster-image-container {
@@ -117,4 +119,17 @@
 
 .col {
     flex: 1;
+}
+
+.bold-row {
+    font-weight: bold;
+}
+
+.narrow {
+    width: 60%;
+}
+
+.scrollable {
+    overflow-y: scroll;
+    height: 400px;
 }

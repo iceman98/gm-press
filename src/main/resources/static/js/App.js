@@ -38,17 +38,20 @@ class App extends React.Component {
         return (
             <div className="col">
                 {this.state.popup && <Popup app={this} monster={this.state.popup}/>}
-                <div className="row no-print">
-                    <div className="col">Filter</div>
-                    <div className="col">
-                        <input type="text" value={this.state.filter} onChange={(e) => this.onFilterChange(e)} />
+                <div className="row no-print field narrow">
+                    <div className="col label">Name filter</div>
+                    <div className="col control">
+                        <input type="text" className="input" value={this.state.filter} onChange={(e) => this.onFilterChange(e)} />
                     </div>
                 </div>
-                {monsterPages.map((p,i)=>
-                    <MonsterPage key={i} page={p} app={this}/>
-                )}
-                <div className="row no-print">
+                <div className="row no-print narrow scrollable">
                     <div className="col">
+                        <div className="row bold-row">
+                            <div className="col">Name</div>
+                            <div className="col">Type</div>
+                            <div className="col">CR</div>
+                            <div className="col">Action</div>
+                        </div>
                         {monsters.map((m)=>
                             <div key={m.index} className="row">
                                 <div className="col">{m.name}</div>
@@ -59,6 +62,9 @@ class App extends React.Component {
                         )}
                     </div>
                 </div>
+                {monsterPages.map((p,i)=>
+                    <MonsterPage key={i} page={p} app={this}/>
+                )}
             </div>
         );
     }
@@ -76,9 +82,9 @@ class App extends React.Component {
         }
 
         if(monsterSelected){
-            return <button className="btn btn-danger" onClick={(e)=>this.onRemoveMonster(e, monster)}>Remove</button>
+            return <button className="button is-danger is-small narrow" onClick={(e)=>this.onRemoveMonster(e, monster)}>Remove</button>
         }else{
-            return <button className="btn btn-primary" onClick={(e)=>this.onAddMonster(e, monster)}>Add</button>
+            return <button className="button is-primary is-small narrow" onClick={(e)=>this.onAddMonster(e, monster)}>Add</button>
         }
     }
 
