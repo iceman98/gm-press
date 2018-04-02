@@ -46,8 +46,10 @@ class App extends React.Component {
 
         return (
             <div>
-                <h1 className="title">GM-Print</h1>
-                {this.state.popup && <Popup app={this} monster={this.state.popup}/>}
+                <div className="no-print">
+                    <h1 className="title">GM-Print</h1>
+                    {this.state.popup && <Popup app={this} monster={this.state.popup}/>}
+                </div>
                 <div className="no-print box">
                     <h2 className="subtitle">Monsters</h2>
                     <div className="row bold-row">

@@ -93,14 +93,18 @@ function PrintMonster(props){
     return (
         <div key={m.index} className="print-monster-column">
             <div className="print-monster-separator-top"/>
-            <div className="no-print">
-                <a className="delete is-pulled-right" onClick={() => props.app.onRemoveMonster(null, m)}/>
+            <div className="no-print print-monster-header">
+                <div className="subtitle">
+                    <a className="delete" onClick={() => props.app.onRemoveMonster(null, m)}/> &nbsp; {m.name}
+                </div>
             </div>
             <div className="print-monster-image-container">
                 {m.image ?
                     <img src={m.image} onClick={() => props.app.setState({popup:m})}/>
                 :
-                    <button className="no-print button is-outlined is-info" onClick={() => props.app.setState({popup:m})}>Find image</button>
+                    <div className="find-image-button">
+                        <button className="no-print button is-outlined is-info" onClick={() => props.app.setState({popup:m})}>Find image</button>
+                    </div>
                 }
             </div>
             <div className="print-monster-image-separator"></div>
