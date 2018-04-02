@@ -2,7 +2,7 @@ class Popup extends React.Component {
 
     constructor(props){
         super(props);
-        this.state = {monster: props.monster, results: [], query:'dnd ' + props.monster.name};
+        this.state = {monster: props.monster, results: [], query:'dnd ' + props.monster.name, customUrl: ''};
         this.app = props.app;
     }
 
@@ -33,14 +33,31 @@ class Popup extends React.Component {
                                     <button className="control button is-primary" onClick={()=>this.doSearch()}>Find</button>
                                 </div>
                             </div>
-                            <div>
-                                Results for '{this.state.query}':
+
+                            <div className="box">
+                                <div className="label">
+                                    Results for '{this.state.query}':
+                                </div>
+
+                                {this.state.results.length ?
+                                    <Results results={this.state.results} popup={this}/>
+                                :
+                                    <div>No results</div>
+                                }
                             </div>
-                            {this.state.results.length ?
-                                <Results results={this.state.results} popup={this}/>
-                            :
-                                <div>No results</div>
-                            }
+
+                            <div className="box">
+                                <label className="label">Custom image</label>
+                                <div className="field has-addons">
+                                    <div className="control">
+                                        <input className="control input" type="text" value={this.state.customUrl} onChange={(e)=> this.onCustomUrlChange(e)}/>
+                                    </div>
+                                    <div className="control">
+                                        <button className="control button is-primary" onClick={()=> this.setMonster(this.state.customUrl)}>Set as image</button>
+                                    </div>
+                                </div>
+                                <img src={this.state.customUrl}/>
+                            </div>
                         </div>
                         <footer className="modal-card-foot">
                             <button className="button is-danger" onClick={()=>this.app.setState({popup:null})}>Close</button>
@@ -51,6 +68,12 @@ class Popup extends React.Component {
         }
 
         return null;
+    }
+
+    setMonster(url){
+        var monsters = this.app.state.monsters;
+        this.state.monster.image = url;
+        this.app.setState({popup: null, monsters: monsters});
     }
 
     doSearch(){
@@ -65,4 +88,9 @@ class Popup extends React.Component {
             popup.setState({results:data.data.result.items});
         }});
     }
+
+    onCustomUrlChange(e){
+        this.setState({customUrl:e.target.value});
+    }
+
 }
