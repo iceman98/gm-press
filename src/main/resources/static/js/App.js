@@ -36,7 +36,7 @@ class App extends React.Component {
         var monsterPages = paginate(this.state.selected, 4);
 
         return (
-            <div className="col">
+            <div>
                 {this.state.popup && <Popup app={this} monster={this.state.popup}/>}
                 <div className="row no-print field narrow">
                     <div className="col label">Name filter</div>

@@ -82,8 +82,8 @@
 }
 
 .image-result-container {
-    flex: 1;
-    padding: 5px;
+    cursor: pointer;
+    text-align: center;
 }
 
 .image-result-container:hover {
@@ -100,11 +100,7 @@
 }
 
 .popup {
-    border: 1px black solid;
-    position: fixed;
-    z-index: 1;
-    background: white;
-    padding: 10px;
+    width: 90%!important;
 }
 
 .results-row {

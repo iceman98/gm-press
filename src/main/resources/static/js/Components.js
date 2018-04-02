@@ -216,11 +216,18 @@ function Action(props){
 
 function Results(props){
     return (
-        <div className="results-row">
+        <div className="columns is-multiline">
             {props.results.map((r)=>
-                <div className="image-result-container" key={r._id}>
-                    <img src={r.thumbnail} onClick={()=>props.popup.setMonster(r.media_fullsize)}/>
-                    <div>{r.width} x {r.height}</div>
+                <div className="column is-3">
+                    <div className="card image-result-container" key={r._id}>
+                        <div className="card-image">
+                            <img src={r.thumbnail} onClick={()=>props.popup.setMonster(r.media_fullsize)}/>
+                        </div>
+                        <div className="card-content">
+                            <p>{r.width} x {r.height}</p>
+                            <p><a href={r.url}>{r.title}</a></p>
+                        </div>
+                    </div>
                 </div>
             )}
         </div>
