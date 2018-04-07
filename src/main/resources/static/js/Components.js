@@ -1,6 +1,6 @@
 function Statistic(props){
     var value = props.value ? props.value : 0;
-    var score = Math.floor((value - 10) / 2);
+    var score = statisticScore(value);
 
     return (
         <Box title={props.name}>
@@ -27,6 +27,7 @@ function Skills(props){
     var monster = props.monster;
     var skills = [];
 
+    if(monster.animal_handling) skills.push("Animal Handling " + sign(monster.animal_handling));
     if(monster.acrobatics) skills.push("Acrobatics " + sign(monster.acrobatics));
     if(monster.arcana) skills.push("Arcana " + sign(monster.arcana));
     if(monster.athletics) skills.push("Athletics " + sign(monster.athletics));
@@ -41,6 +42,7 @@ function Skills(props){
     if(monster.performance) skills.push("Performance " + sign(monster.performance));
     if(monster.persuasion) skills.push("Persuasion " + sign(monster.persuasion));
     if(monster.religion) skills.push("Religion " + sign(monster.religion));
+    if(monster.sleight) skills.push("Sleight of Hand " + sign(monster.sleight));
     if(monster.stealth) skills.push("Stealth " + sign(monster.stealth));
     if(monster.survival) skills.push("Survival " + sign(monster.survival));
 
@@ -110,13 +112,13 @@ function PrintMonster(props){
             <div className="print-monster-image-separator"></div>
             <div className="print-monster-row">
                 <Box title="Name" ratio="4">
-                    {m.name}
+                    <b>{m.name}</b>
                 </Box>
                 <Box title="CR">
                     {challengeRating(m.challenge_rating)}
                 </Box>
                 <Box title="XP">
-                    {m.challenge_rating * 200}
+                    {experiencePoints(m.challenge_rating)}
                 </Box>
             </div>
             <div className="print-monster-row">
@@ -142,8 +144,11 @@ function PrintMonster(props){
                 </Box>
             </div>
             <div className="print-monster-row">
-                <Box title="Speed">
+                <Box title="Speed" ratio="6">
                     {m.speed}
+                </Box>
+                <Box title="Initiative">
+                    {sign(statisticScore(m.dexterity))}
                 </Box>
             </div>
             <div className="print-monster-row">
@@ -234,6 +239,76 @@ function Results(props){
                     </div>
                 </div>
             )}
+        </div>
+    );
+}
+
+function Field(props){
+    var isNumber = props.type && props.type=="number";
+    var isArea = props.type && props.type=="textarea";
+    var isDisabled = (props.value!=undefined);
+
+    var getValue = function(){
+        if(isDisabled){
+            return props.value;
+        } else {
+        if(props.parent==undefined) debugger
+            return props.parent.state[props.object][props.field];
+        }
+    };
+
+    var setValue = function(value){
+        if(value==""){
+            value = null;
+        }
+
+        if(isNumber && value!=null){
+            value = parseFloat(value);
+        }
+
+        var obj = props.parent.state[props.object];
+
+        if(value!=null){
+            obj[props.field] = value;
+        } else {
+            delete obj[props.field];
+        }
+
+        props.parent.setState({[props.object]: obj})
+
+        if(props.parent.onUpdate){
+            props.parent.onUpdate();
+        }
+    }
+
+    var input;
+
+    if(isArea){
+        input = (
+            <textarea disabled = {isDisabled}
+                className = "textarea"
+                type = {isNumber ? "number" : "text" }
+                placeholder = {props.placeholder ? props.placeholder : props.title}
+                value = {getValue()}
+                onChange = {(e) => setValue(e.target.value)} />
+        );
+    } else {
+        input = (
+            <input disabled = {isDisabled}
+                className = "input"
+                type = {isNumber ? "number" : "text" }
+                placeholder = {props.placeholder ? props.placeholder : props.title}
+                value = {getValue()}
+                onChange = {(e) => setValue(e.target.value)} />
+        );
+    }
+
+    return (
+        <div className="field">
+            <label className="label">{props.title}</label>
+            <div className="control">
+                {input}
+            </div>
         </div>
     );
 }

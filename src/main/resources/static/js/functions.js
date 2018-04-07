@@ -12,7 +12,7 @@ function challengeRating(c){
 }
 
 function passivePerception(m){
-    var modifier = m.perception ? m.perception : Math.floor((m.wisdom - 10) / 2);
+    var modifier = m.perception ? m.perception : statisticScore(m.wisdom);
     return 10 + modifier;
 }
 
@@ -40,4 +40,12 @@ function paginate(array, pageSize){
 
 function hasDefenses(m){
     return m.damage_vulnerabilities || m.damage_resistances || m.damage_immunities || m.condition_immunities || m.strength_save || m.dexterity_save || m.constitution_save || m.intelligence_save || m.wisdom_save || m.charisma_save;
+}
+
+function experiencePoints(cr){
+    return cr * 200;
+}
+
+function statisticScore(value){
+    return Math.floor((value - 10) / 2);
 }
