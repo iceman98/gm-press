@@ -47,7 +47,6 @@ class App extends React.Component {
         return (
             <div>
                 <div className="no-print">
-                    <h1 className="title">GM-Print</h1>
                     {this.state.popup && <Popup app={this} monster={this.state.popup}/>}
                 </div>
                 <div className="no-print box">

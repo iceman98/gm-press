@@ -18,7 +18,13 @@ function passivePerception(m){
 
 function filteredSenses(monster){
     var pp = passivePerception(monster);
-    var senses = monster.senses.split(",").map((s)=>s.trim()).filter((s)=>s != "passive Perception " + pp).join(", ");
+
+    var senses;
+
+    if(monster.senses){
+        var senses = monster.senses.split(",").map((s)=>s.trim()).filter((s)=>s != "passive Perception " + pp).join(", ");
+    }
+
     return (senses ? senses : "--");
 }
 
