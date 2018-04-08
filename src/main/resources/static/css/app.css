@@ -33,14 +33,20 @@
 
 .print-monster-column {
     padding: 5px;
-    width: 24%;
+    width: 25%;
     font-family: 'Roboto Condensed', sans-serif;
     font-size: x-small;
 }
 
-.print-monster-header {
-    position: absolute;
-    z-index: 1;
+.print-monster-column-wide {
+    padding: 5px;
+    width: 50%;
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size: x-small;
+}
+
+.print-monster-header h1 {
+    font-size: large;
 }
 
 .find-image-button{

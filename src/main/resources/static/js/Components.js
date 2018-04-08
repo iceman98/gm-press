@@ -54,7 +54,7 @@ function Skills(props){
         );
     }
 
-    return <div>&nbsp;</div>;
+    return <div/>;
 }
 
 function AbilitySaves(props){
@@ -92,14 +92,32 @@ function MonsterPage(props){
 function PrintMonster(props){
     var m = props.monster;
 
+    var onWidthChange = function(monster, wide){
+        monster.wide = wide;
+        props.app.setState(props.app.state);
+    }
+
     return (
-        <div key={m.index} className="print-monster-column">
-            <div className="print-monster-separator-top"/>
+        <div key={m.index} className={m.wide ? "print-monster-column-wide": "print-monster-column"}>
             <div className="no-print print-monster-header">
-                <div className="subtitle">
-                    <a className="delete" onClick={() => props.app.onRemoveMonster(null, m)}/> &nbsp; {m.name}
+                <div>
+                    <h1>
+                        {m.name}
+                        <a className="delete is-pulled-right" onClick={() => props.app.onRemoveMonster(null, m)}/>
+                    </h1>
+                </div>
+                <div className="control">
+                    <label className="radio">
+                        <input type="radio" name={m.index + '-width'} checked={!m.wide} onChange={()=>onWidthChange(m, false)} data/>
+                        Normal
+                    </label>
+                    <label className="radio">
+                        <input type="radio" name={m.index + '-width'} checked={m.wide} onChange={()=>onWidthChange(m, true)}/>
+                        Wide
+                    </label>
                 </div>
             </div>
+            <div className="print-monster-separator-top"/>
             <div className="print-monster-image-container">
                 {m.image ?
                     <img src={m.image} onClick={() => props.app.setState({popup:m})}/>
