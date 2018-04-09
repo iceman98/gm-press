@@ -42,7 +42,7 @@ class Monster extends React.Component {
                 <div className="columns">
                     <div className="column"><Field title="Name" object="monster" field="name" parent={this}/></div>
                     <div className="column"><Field title="CR" object="monster" field="challenge_rating" parent={this} type="number"/></div>
-                    <div className="column"><Field title="XP" value={experiencePoints(m.challenge_rating)}/></div>
+                    <div className="column"><Field title="XP" value={experiencePoints(m.challenge_rating)} placeholder="Enter CR"/></div>
                 </div>
 
                 <div className="columns">
@@ -54,9 +54,9 @@ class Monster extends React.Component {
 
                 <div className="columns">
                     <div className="column"><Field title="Armor Class" object="monster" field="armor_class" parent={this} type="number"/></div>
-                    <div className="column"><Field title="HP Die" object="monster" field="hit_dice" parent={this}/></div>
-                    <div className="column"><Field title="HP" value={health(m.hit_dice, m.constitution)}/></div>
-                    <div className="column"><Field title="Passive Perception" value={passivePerception(m)}/></div>
+                    <div className="column"><Field title="Hit Dice" object="monster" field="hit_dice" parent={this}/></div>
+                    <div className="column"><Field title="HP" value={health(m.hit_dice, m.constitution)} placeholder="Enter Hit dice and Constitution"/></div>
+                    <div className="column"><Field title="Passive Perception" value={passivePerception(m)} placeholder="Enter Perception or Wisdom"/></div>
                 </div>
 
                 <div className="columns">
@@ -66,27 +66,27 @@ class Monster extends React.Component {
                 <div className="columns">
                     <div className="column">
                         <Field title="Strength" object="monster" field="strength" parent={this} type="number"/>
-                        <Field title="STR" value={sign(statisticScore(m.strength))}/>
+                        <Field title="STR" value={sign(statisticScore(m.strength))} placeholder="Enter Strength"/>
                     </div>
                     <div className="column">
                         <Field title="Dexterity" object="monster" field="dexterity" parent={this} type="number"/>
-                        <Field title="DEX" value={sign(statisticScore(m.dexterity))}/>
+                        <Field title="DEX" value={sign(statisticScore(m.dexterity))} placeholder="Enter Dexterity"/>
                     </div>
                     <div className="column">
                         <Field title="Constitution" object="monster" field="constitution" parent={this} type="number"/>
-                        <Field title="CON" value={sign(statisticScore(m.constitution))}/>
+                        <Field title="CON" value={sign(statisticScore(m.constitution))} placeholder="Enter Constitution"/>
                     </div>
                     <div className="column">
                         <Field title="Intelligence" object="monster" field="intelligence" parent={this} type="number"/>
-                        <Field title="INT" value={sign(statisticScore(m.intelligence))}/>
+                        <Field title="INT" value={sign(statisticScore(m.intelligence))} placeholder="Enter Intelligence"/>
                     </div>
                     <div className="column">
                         <Field title="Wisdom" object="monster" field="wisdom" parent={this} type="number"/>
-                        <Field title="WIS" value={sign(statisticScore(m.wisdom))}/>
+                        <Field title="WIS" value={sign(statisticScore(m.wisdom))} placeholder="Enter Wisdom"/>
                     </div>
                     <div className="column">
                         <Field title="Charisma" object="monster" field="charisma" parent={this} type="number"/>
-                        <Field title="CHA" value={sign(statisticScore(m.charisma))}/>
+                        <Field title="CHA" value={sign(statisticScore(m.charisma))} placeholder="Enter Charisma"/>
                     </div>
                 </div>
 

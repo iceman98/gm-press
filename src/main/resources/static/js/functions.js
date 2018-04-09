@@ -1,9 +1,13 @@
 function sign(number){
-    if(number >= 0){
-        return "+" + number;
-    } else {
-        return number;
+    if(number!=undefined){
+        if(number >= 0){
+            return "+" + number;
+        } else {
+            return number;
+        }
     }
+
+    return null;
 }
 
 function challengeRating(c){
@@ -12,8 +16,12 @@ function challengeRating(c){
 }
 
 function passivePerception(m){
-    var modifier = m.perception ? m.perception : statisticScore(m.wisdom);
-    return 10 + modifier;
+    if(m.perception || m.wisdom){
+        var modifier = m.perception ? m.perception : statisticScore(m.wisdom);
+        return 10 + modifier;
+    }
+
+    return null;
 }
 
 function filteredSenses(monster){
@@ -50,20 +58,22 @@ function hasDefenses(m){
 
 function experiencePoints(cr){
     if(cr == undefined){
-        return NaN;
+        return null;
     } else if(cr == 0){
         return 10;
     } else if(cr < 1) {
         return cr * 200;
-    } else if(cr <= 24){
-        return [450, 700, 1100, 1800, 2300, 2900, 3900, 5000, 5900, 7200, 8400, 10000, 11500, 13000, 15000, 18000, 20000, 22000, 25000, 33000, 41000, 50000, 62000][cr];
     } else {
-        return 155000;
+        return [0, 200, 450, 700, 1100, 1800, 2300, 2900, 3900, 5000, 5900, 7200, 8400, 10000, 11500, 13000, 15000, 18000, 20000, 22000, 25000, 33000, 41000, 50000, 62000, 75000, 90000, 105000, 120000, 135000, 155000][cr];
     }
 }
 
 function statisticScore(value){
-    return Math.floor((value - 10) / 2);
+    if(value!=undefined){
+        return Math.floor((value - 10) / 2);
+    }
+
+    return null;
 }
 
 function health(dice, con){
