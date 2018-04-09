@@ -270,7 +270,6 @@ function Field(props){
         if(isDisabled){
             return props.value;
         } else {
-        if(props.parent==undefined) debugger
             return props.parent.state[props.object][props.field];
         }
     };

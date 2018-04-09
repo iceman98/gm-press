@@ -49,7 +49,17 @@ function hasDefenses(m){
 }
 
 function experiencePoints(cr){
-    return cr * 200;
+    if(cr == undefined){
+        return NaN;
+    } else if(cr == 0){
+        return 10;
+    } else if(cr < 1) {
+        return cr * 200;
+    } else if(cr <= 24){
+        return [450, 700, 1100, 1800, 2300, 2900, 3900, 5000, 5900, 7200, 8400, 10000, 11500, 13000, 15000, 18000, 20000, 22000, 25000, 33000, 41000, 50000, 62000][cr];
+    } else {
+        return 155000;
+    }
 }
 
 function statisticScore(value){

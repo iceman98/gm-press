@@ -48,6 +48,7 @@ class Monster extends React.Component {
                 <div className="columns">
                     <div className="column"><Field title="Size" object="monster" field="size" parent={this}/></div>
                     <div className="column"><Field title="Type" object="monster" field="type" parent={this}/></div>
+                    <div className="column"><Field title="Subtype" object="monster" field="subtype" parent={this}/></div>
                     <div className="column"><Field title="Alignment" object="monster" field="alignment" parent={this}/></div>
                 </div>
 
