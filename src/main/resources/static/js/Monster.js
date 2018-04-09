@@ -54,9 +54,8 @@ class Monster extends React.Component {
 
                 <div className="columns">
                     <div className="column"><Field title="Armor Class" object="monster" field="armor_class" parent={this} type="number"/></div>
-                    <div className="column"><Field title="HP" object="monster" field="hit_points" parent={this} type="number"/></div>
                     <div className="column"><Field title="HP Die" object="monster" field="hit_dice" parent={this}/></div>
-                    <div className="column"><Field title="HP" value={m.hit_points + " (" + m.hit_dice + ")"}/></div>
+                    <div className="column"><Field title="HP" value={health(m.hit_dice, m.constitution)}/></div>
                     <div className="column"><Field title="Passive Perception" value={passivePerception(m)}/></div>
                 </div>
 

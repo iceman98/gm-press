@@ -65,3 +65,27 @@ function experiencePoints(cr){
 function statisticScore(value){
     return Math.floor((value - 10) / 2);
 }
+
+function health(dice, con){
+    var m = /(\d+)d(\d+)/.exec(dice);
+
+    if(m){
+        var count = parseInt(m[1]);
+        var sides = parseInt(m[2]);
+        var bonus = parseInt(statisticScore(con));
+
+        var average = [0, 0, 0, 0, 2.5, 0, 3.5, 0, 4.5, 0, 5.5, 0, 6.5, 0, 0, 0, 0, 0, 0, 0, 10.5];
+        var total = Math.floor(count * (average[sides] + bonus));
+
+        if(total){
+            var result = total + " " + "(" + dice;
+            if(bonus!=0){
+                result += sign(bonus*count);
+            }
+            result += ")";
+            return result;
+        }
+    }
+
+    return null;
+}

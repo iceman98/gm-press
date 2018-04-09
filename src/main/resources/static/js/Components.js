@@ -155,7 +155,7 @@ function PrintMonster(props){
                     {m.armor_class}
                 </Box>
                 <Box title="HP">
-                    {m.hit_points} ({m.hit_dice})
+                    {health(m.hit_dice, m.constitution)}
                 </Box>
                 <Box title="Passive Perception">
                     {passivePerception(m)}
@@ -264,7 +264,7 @@ function Results(props){
 function Field(props){
     var isNumber = props.type && props.type=="number";
     var isArea = props.type && props.type=="textarea";
-    var isDisabled = (props.value!=undefined);
+    var isDisabled = (props.parent==undefined);
 
     var getValue = function(){
         if(isDisabled){
