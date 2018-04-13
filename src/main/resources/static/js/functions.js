@@ -40,14 +40,21 @@ function paginate(array, pageSize){
     var pages = [];
     var page = [];
     var count = 0;
+
     for(var index in array){
-        if(page.length == pageSize){
-            pages.push(page);
-            page = [];
-        }
         var element = array[index];
-        page.push(element);
+        var element_size = (element.wide ? 2: 1);
+
+        if(count + element_size <= pageSize){
+            page.push(element);
+            count += element_size;
+        } else {
+            pages.push(page);
+            page = [element];
+            count = element_size;
+        }
     }
+
     pages.push(page);
     return pages;
 }
