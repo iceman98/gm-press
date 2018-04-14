@@ -16700,5 +16700,56 @@
          "desc": "Madam Eva targets one creature that she can see within 10 feet of her and casts one of the fllowing spells on the target (save DC 17), requiring neither somatic nor material components to do so: animal friendship, charm person, or hold person. If the target succeeds on the initial saving throw, Madam Eva is blinded until the end of her next turn. Once a target succeeds on a saving throw against this eﬀect, it is immune to the Evil Eye power of all Vistani for 24 hours."
        }
      ]
+   },
+   {
+     "index": "ee8cc7",
+     "name": "Rictavio",
+     "challenge_rating": 5,
+     "size": "Medium",
+     "type": "humanoid",
+     "subtype": "human",
+     "alignment": "lawful good",
+     "armor_class": 12,
+     "hit_dice": "14d8",
+     "speed": "30 ft.",
+     "strength": 9,
+     "dexterity": 12,
+     "constitution": 13,
+     "intelligence": 16,
+     "wisdom": 18,
+     "charisma": 16,
+     "languages": "abyssal, common, elvish, infernal",
+     "constitution_save": 4,
+     "wisdom_save": 7,
+     "arcana": 9,
+     "insight": 7,
+     "medicine": 7,
+     "perception": 7,
+     "religion": 6,
+     "sleight": 4,
+     "special_abilities": [
+       {
+         "desc": "In addition to his sword cane, Rictavio wears a hat of disguise and a ring of mind shielding, and he carries a spell scroll of raise dead.",
+         "name": "Special Equipment"
+       },
+       {
+         "name": "Spellcasting",
+         "desc": "Rictavio is a 9th-level spellcaster. His spellcasting ability is Wisdom (spell save DC 15, +7 to hit with spell attacks). Rictavio has the following cleric spells prepared:\n\nCantrips (at will): guidance, light, mending, thaumaturgy\n1st level (4 slots): cure wounds, detect evil and good, protection from evil and good, sanctuary\n2nd level (3 slots): augury, lesser restoration, protection from poison\n3rd level (3 slots): magic circle, remove curse, speak with dead\n4th level (3 slots): death ward, freedom of movement\n5th level (1 slot}: dispel evil and good"
+       },
+       {
+         "name": "Undead Slayer",
+         "desc": "When Rictavio hits an undead with a weapon attack, the undead takes an extra 10 (3d6) damage of the weapon's type."
+       }
+     ],
+     "actions": [
+       {
+         "name": "Multiattack",
+         "desc": "Rictavio makes two attacks with his sword cane."
+       },
+       {
+         "name": "Sword Cane",
+         "desc": "Melee Weapon Attack: +4 to hit, reach 5 ft., one target. Hit: 4 (1d6 + 1) bludgeoning damage (wooden cane) or piercing damage (silvered sword)."
+       }
+     ]
    }
 ]
