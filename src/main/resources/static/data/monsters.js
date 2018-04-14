@@ -16683,7 +16683,7 @@
      "special_abilities": [
        {
          "name": "Spellcasting",
-         "desc": "Madam Eva is a 16th-level spellcaster. Her spellcasting ability is Wisdom (spell save DC 17, +9 to hit with spell attacks). Madam Eva has the following cleric spells prepared:\n\nCantrips (at will): light, mending, sacredflame, thaumaturgy\n1st level (4 slots): bane, command, detect evil and good, protection fom evil and good\n2nd level (3 slots): lesser restoration, protection from poison, spiritual weapon\n3rd level (3 slots): create food and water, speak with dead, spirit guardians\n4th level (3 slots): divination, freedom of movement, guardian of faith\n5th level (2 slots): greater restoration, raise dead\n6th level (1 slot): find the path, harm, true seeing\n7th level (1 slot): fire storm, regenerate\n8th level (1 slot): earthquake"
+         "desc": "Madam Eva is a 16th-level spellcaster. Her spellcasting ability is Wisdom (spell save DC 17, +9 to hit with spell attacks). Madam Eva has the following cleric spells prepared:\n\nCantrips (at will): light, mending, sacred flame, thaumaturgy\n1st level (4 slots): bane, command, detect evil and good, protection fom evil and good\n2nd level (3 slots): lesser restoration, protection from poison, spiritual weapon\n3rd level (3 slots): create food and water, speak with dead, spirit guardians\n4th level (3 slots): divination, freedom of movement, guardian of faith\n5th level (2 slots): greater restoration, raise dead\n6th level (1 slot): find the path, harm, true seeing\n7th level (1 slot): fire storm, regenerate\n8th level (1 slot): earthquake"
        }
      ],
      "actions": [
