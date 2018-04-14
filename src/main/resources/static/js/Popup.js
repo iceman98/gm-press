@@ -84,7 +84,7 @@ class Popup extends React.Component {
 
     getResults(popup){
         var query = encodeURIComponent(this.state.query);
-        $.ajax('http://cors-anywhere.herokuapp.com/https://api.qwant.com/api/search/images?count=16&offset=1&q=' + query, {dataType:'json', success: function(data){
+        $.ajax('https://cors-anywhere.herokuapp.com/https://api.qwant.com/api/search/images?count=16&offset=1&q=' + query, {dataType:'json', success: function(data){
             popup.setState({results:data.data.result.items});
         }});
     }
