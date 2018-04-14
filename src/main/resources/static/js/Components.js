@@ -225,20 +225,14 @@ function PrintMonster(props){
 
 function Action(props){
     var action = props.action;
+    var title = props.legendary ? <b><u>{action.name}</u></b> : <b>{action.name}</b>;
+    var description = action.desc.replace(/(\r\n|\n|\r)/gm, "<br>");
 
-    if(props.legendary){
-        return (
-            <div>
-                <b><u>{action.name}</u></b> {action.desc}
-            </div>
-        )
-    } else {
-        return (
-            <div>
-                <b>{action.name}</b> {action.desc}
-            </div>
-        );
-    }
+    return (
+        <div>
+            {title} <span dangerouslySetInnerHTML={{__html:description}}></span>
+        </div>
+    )
 }
 
 function Results(props){
