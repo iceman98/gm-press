@@ -63,6 +63,35 @@ function hasDefenses(m){
     return m.damage_vulnerabilities || m.damage_resistances || m.damage_immunities || m.condition_immunities || m.strength_save || m.dexterity_save || m.constitution_save || m.intelligence_save || m.wisdom_save || m.charisma_save;
 }
 
+function hasTraits(m){
+    return getSkills(m).length > 0 || (m.special_abilities != null && m.special_abilities.length > 0);
+}
+
+function getSkills(monster){
+    var skills = [];
+
+    if(monster.animal_handling) skills.push("Animal Handling " + sign(monster.animal_handling));
+    if(monster.acrobatics) skills.push("Acrobatics " + sign(monster.acrobatics));
+    if(monster.arcana) skills.push("Arcana " + sign(monster.arcana));
+    if(monster.athletics) skills.push("Athletics " + sign(monster.athletics));
+    if(monster.deception) skills.push("Deception " + sign(monster.deception));
+    if(monster.history) skills.push("History " + sign(monster.history));
+    if(monster.insight) skills.push("Insight " + sign(monster.insight));
+    if(monster.intimidation) skills.push("Intimidation " + sign(monster.intimidation));
+    if(monster.investigation) skills.push("Investigation " + sign(monster.investigation));
+    if(monster.medicine) skills.push("Medicine " + sign(monster.medicine));
+    if(monster.nature) skills.push("Nature " + sign(monster.nature));
+    if(monster.perception) skills.push("Perception " + sign(monster.perception));
+    if(monster.performance) skills.push("Performance " + sign(monster.performance));
+    if(monster.persuasion) skills.push("Persuasion " + sign(monster.persuasion));
+    if(monster.religion) skills.push("Religion " + sign(monster.religion));
+    if(monster.sleight) skills.push("Sleight of Hand " + sign(monster.sleight));
+    if(monster.stealth) skills.push("Stealth " + sign(monster.stealth));
+    if(monster.survival) skills.push("Survival " + sign(monster.survival));
+
+    return skills;
+}
+
 function experiencePoints(cr){
     if(cr == undefined){
         return null;

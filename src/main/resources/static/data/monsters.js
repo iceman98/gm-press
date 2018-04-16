@@ -16751,5 +16751,46 @@
          "desc": "Melee Weapon Attack: +4 to hit, reach 5 ft., one target. Hit: 4 (1d6 + 1) bludgeoning damage (wooden cane) or piercing damage (silvered sword)."
        }
      ]
+   },
+   {
+     "index": "865842",
+     "name": "Izek Strazni",
+     "challenge_rating": 5,
+     "size": "medium",
+     "type": "humanoid",
+     "subtype": "human",
+     "alignment": "neutral evil",
+     "armor_class": 14,
+     "hit_dice": "15d8",
+     "speed": "30 ft.",
+     "strength": 18,
+     "dexterity": 15,
+     "constitution": 16,
+     "intelligence": 10,
+     "wisdom": 9,
+     "charisma": 15,
+     "languages": "common",
+     "intimidation": 8,
+     "perception": 2,
+     "special_abilities": [
+       {
+         "name": "Brute",
+         "desc": "A melee weapon deals one extra die of its damage when Izek hits with it (included in the attack)."
+       }
+     ],
+     "actions": [
+       {
+         "name": "Multiattack",
+         "desc": "lzek makes two attacks with his battleaxe."
+       },
+       {
+         "name": "Battleaxe",
+         "desc": "Melee Weapon Attack: +7 to hit, reach 5 ft., one tar­get. Hit: 13 (2d8 + 4) slashing damage, or 15 (2d10 + 4) when used with two hands."
+       },
+       {
+         "name": "Hurl Flame",
+         "desc": "Ranged Spell Attack: +5 to hit, range 60 ft., one target. Hit: 10 (3d6) fire damage. If the target is a flammable object that isn't being worn or carried, it catches fire."
+       }
+     ]
    }
 ]

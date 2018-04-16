@@ -25,26 +25,7 @@ function Box(props){
 
 function Skills(props){
     var monster = props.monster;
-    var skills = [];
-
-    if(monster.animal_handling) skills.push("Animal Handling " + sign(monster.animal_handling));
-    if(monster.acrobatics) skills.push("Acrobatics " + sign(monster.acrobatics));
-    if(monster.arcana) skills.push("Arcana " + sign(monster.arcana));
-    if(monster.athletics) skills.push("Athletics " + sign(monster.athletics));
-    if(monster.deception) skills.push("Deception " + sign(monster.deception));
-    if(monster.history) skills.push("History " + sign(monster.history));
-    if(monster.insight) skills.push("Insight " + sign(monster.insight));
-    if(monster.intimidation) skills.push("Intimidation " + sign(monster.intimidation));
-    if(monster.investigation) skills.push("Investigation " + sign(monster.investigation));
-    if(monster.medicine) skills.push("Medicine " + sign(monster.medicine));
-    if(monster.nature) skills.push("Nature " + sign(monster.nature));
-    if(monster.perception) skills.push("Perception " + sign(monster.perception));
-    if(monster.performance) skills.push("Performance " + sign(monster.performance));
-    if(monster.persuasion) skills.push("Persuasion " + sign(monster.persuasion));
-    if(monster.religion) skills.push("Religion " + sign(monster.religion));
-    if(monster.sleight) skills.push("Sleight of Hand " + sign(monster.sleight));
-    if(monster.stealth) skills.push("Stealth " + sign(monster.stealth));
-    if(monster.survival) skills.push("Survival " + sign(monster.survival));
+    var skills = getSkills(monster);
 
     if(skills.length>0){
         return (
@@ -204,14 +185,18 @@ function PrintMonster(props){
                     <Box title="Defenses"> -- </Box>
                 }
             </div>
-            <div className="print-monster-row">
-                <Box title="Traits">
-                    <Skills monster={m}/>
-                    {m.special_abilities && m.special_abilities.map((s,i)=>
-                        <Action key={i} action={s}/>
-                    )}
-                </Box>
-            </div>
+            {hasTraits(m)?
+                <div className="print-monster-row">
+                    <Box title="Traits">
+                        <Skills monster={m}/>
+                        {m.special_abilities && m.special_abilities.map((s,i)=>
+                            <Action key={i} action={s}/>
+                        )}
+                    </Box>
+                </div>
+            :
+                <div/>
+            }
             <div className="print-monster-row">
                 <Box title="Actions">
                     {m.actions && m.actions.map((a,i)=>
