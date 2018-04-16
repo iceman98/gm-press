@@ -97,8 +97,12 @@ function PrintMonster(props){
         props.app.setState(props.app.state);
     }
 
+    var className = 'print-monster-column';
+    className += (orientation == 'land' ? ' land' : ' port');
+    className += (m.wide ? ' wide' : '');
+
     return (
-        <div key={m.index} className={m.wide ? "print-monster-column-wide": "print-monster-column"}>
+        <div key={m.index} className={className}>
             <div className="no-print print-monster-header">
                 <div>
                     <h1>

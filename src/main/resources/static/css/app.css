@@ -33,16 +33,24 @@
 
 .print-monster-column {
     padding: 5px;
-    width: 25%;
     font-family: 'Roboto Condensed', sans-serif;
     font-size: x-small;
 }
 
-.print-monster-column-wide {
-    padding: 5px;
+.print-monster-column.land {
+    width: 25%;
+}
+
+.print-monster-column.wide.land {
     width: 50%;
-    font-family: 'Roboto Condensed', sans-serif;
-    font-size: x-small;
+}
+
+.print-monster-column.port {
+    width: 33%;
+}
+
+.print-monster-column.port.wide {
+    width: 66%;
 }
 
 .print-monster-header h1 {

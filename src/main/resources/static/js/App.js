@@ -42,7 +42,8 @@ class App extends React.Component {
         crList = crList.sort();
         crList[0] = "all";
 
-        var monsterPages = paginate(this.state.selected, 4);
+        var pageSize = (orientation == 'land' ? 4 : 3);
+        var monsterPages = paginate(this.state.selected, pageSize);
 
         return (
             <div>
@@ -164,3 +165,4 @@ class App extends React.Component {
 }
 
 ReactDOM.render(React.createElement(App), document.getElementById('root'));
+var orientation = 'land';
